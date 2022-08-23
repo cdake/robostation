@@ -10,7 +10,7 @@ const userRouter = require('./routes/users')
 //Создаем маблицы в БД
 sequelize.sync()
 
-sequelize.sync({force: true})
+sequelize.sync({alter: true})
 
 
 app.set('views', __dirname + '/views')
