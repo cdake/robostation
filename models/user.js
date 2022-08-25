@@ -25,6 +25,11 @@ const User = sequelize.define('user', {
         allowNull: false
     },
 
+    phone_no: {
+        type: Sequelize.STRING(15),
+        allowNull: false,
+    },
+
     picture: {
         type:Sequelize.STRING,
         defaultValue: 'static/img/avatar.png'

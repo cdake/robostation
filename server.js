@@ -6,6 +6,8 @@ const sequelize = require('./database')
 // const Promocodes = require('./models/promocodes')
 const port = process.env.PORT
 const userRouter = require('./routes/users')
+const loginRouter = require('./routes/login')
+
 
 //Создаем маблицы в БД
 sequelize.sync()
@@ -22,6 +24,7 @@ app.set('static', __dirname + 'static')
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use('/users', userRouter)
+app.use('/login', loginRouter)
 
 
 app.get('/', async (req, res)=>{
