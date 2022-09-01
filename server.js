@@ -10,6 +10,7 @@ const port = process.env.PORT
 const userRouter = require('./routes/users')
 const promoRouter = require('./routes/promo')
 const vehicleRouter = require('./routes/vehicles')
+const courierRouter = require('./routes/couriers')
 
 db = mysql.createConnection({
   host: process.env.HOST,
@@ -35,6 +36,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/users', userRouter)
 app.use('/api/promo', promoRouter)
 app.use('/api/vehicle', vehicleRouter)
+app.use('/api/couriers', courierRouter)
 
 app.get('/', async (req, res) => {
   // const jane = await User.create({ first_name: "Jane", last_name: "Doe", iin: "123456789123" });

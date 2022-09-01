@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     if (!vehicle_name) {
         res.status(400).send("Bad request")
     }
-    console.log(req.body)
+
     let sql = "INSERT INTO `vehicles`(vehicle_name) VALUES (?)"
     db.query(sql, [vehicle_name], (err, data, fields) => {
         if (err) throw err;
