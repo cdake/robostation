@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+//courier table should have rating field
 
 router.get('/', (req, res) => {
     let sql = "SELECT * FROM couriers";

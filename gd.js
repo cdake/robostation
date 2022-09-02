@@ -13,10 +13,13 @@ const connection = sql.createConnection({
 
 let createAll = () => {
 
+    connection.execute('CREATE TABLE IF NOT EXISTS `payments` (`payment_id` int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL, `payment_method` varchar(200) NOT NULL)')
+
+    console.log('Table Payments was successfully created');
 
     connection.execute('CREATE TABLE IF NOT EXISTS `vehicles` (`vehicle_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, `vehicle_name` varchar(255) NOT NULL);')
 
-    console.log('Table Vehicle was successfully created');
+    console.log('Table Vehicles was successfully created');
 
     connection.execute('CREATE TABLE IF NOT EXISTS `promocodes` (`code_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,\
     `code` varchar(5) NOT NULL,\
@@ -43,6 +46,7 @@ let createAll = () => {
 
     console.log('Table Users was successfully created');
 
+    //courier table should have rating field or it needs to create rating table
     connection.execute('CREATE TABLE IF NOT EXISTS `couriers` (`courier_id` int(11) NOT NULL AUTO_INCREMENT,\
         `first_name` varchar(255) NOT NULL,\
         `last_name` varchar(255) NOT NULL,\
@@ -59,6 +63,16 @@ let createAll = () => {
 
     console.log('Table Couriers was successfully created');
 
+
+    connection.execute('CREATE TABLE IF NOT EXISTS `orders`(order_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\
+         createdAt DATETIME, description TEXT,price FLOAT, address_from VARCHAR(255) NOT NULL, address_to VARCHAR(255) NOT NULL, is_delivered BOOLEAN DEFAULT 0, fk_payment_method INT, fk_courier_id INT, fk_user_id INT,\
+    CONSTRAINT FK_Payment FOREIGN KEY(fk_payment_method) REFERENCES payments(payment_id), \
+        CONSTRAINT FK_courier FOREIGN KEY(fk_courier_id) REFERENCES couriers(courier_id), \
+        CONSTRAINT FK_user FOREIGN KEY(fk_user_id) REFERENCES users(user_id)); ')
+
+    console.log('Table Orders was successfully created');
+
+    return;
 };
 
 createAll();
