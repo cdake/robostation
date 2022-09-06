@@ -52,12 +52,12 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:courier_id', async (req, res) => {
     let { courier_id } = req.params
-    let { first_name, last_name, phone_no, iin, id_no, picture, id_pic, is_active, created_at, vehicle_id_fk } = req.body
+    let { first_name, last_name, phone_no, iin, id_no, picture, id_pic, is_active, vehicle_id_fk } = req.body
     const updated_at = new Date();
-    let sql = `UPDATE couriers SET first_name=?, last_name=?, phone_no=?, iin=?, id_no=?, picture=?, id_pic=?, is_active=?, created_at=?, vehicle_id_fk=?, updated_at=? WHERE courier_id =?`
-    db.query(sql, [first_name, last_name, phone_no, iin, id_no, picture, id_pic, is_active, created_at, vehicle_id_fk, updated_at], (err, data, fields) => {
+    let sql = `UPDATE couriers SET first_name=?, last_name=?, phone_no=?, iin=?, id_no=?, picture=?, id_pic=?, is_active=?,  vehicle_id_fk=?, updated_at=? WHERE courier_id =?`
+    db.query(sql, [first_name, last_name, phone_no, iin, id_no, picture, id_pic, is_active, vehicle_id_fk, updated_at, courier_id], (err, data, fields) => {
         if (err) throw err;
         res.json({
             status: 200,
