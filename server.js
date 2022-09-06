@@ -11,6 +11,7 @@ const userRouter = require('./routes/users')
 const promoRouter = require('./routes/promo')
 const vehicleRouter = require('./routes/vehicles')
 const courierRouter = require('./routes/couriers')
+const orderRouter = require('./routes/orders')
 
 db = mysql.createConnection({
   host: process.env.HOST,
@@ -37,6 +38,8 @@ app.use('/api/users', userRouter)
 app.use('/api/promo', promoRouter)
 app.use('/api/vehicle', vehicleRouter)
 app.use('/api/couriers', courierRouter)
+app.use('/api/orders', orderRouter)
+
 
 app.get('/', async (req, res) => {
   // const jane = await User.create({ first_name: "Jane", last_name: "Doe", iin: "123456789123" });
