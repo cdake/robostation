@@ -57,6 +57,7 @@ let createAll = () => {
         `id_pic` varchar(255),\
         `is_active` tinyint(1) DEFAULT 0,\
         `created_at` datetime DEFAULT NULL,\
+        `updated_at` datetime DEFAULT NULL,\
         `vehicle_id_fk` int(11) DEFAULT NULL,\
         PRIMARY KEY (courier_id),\
         CONSTRAINT `fk_vehicle_id` FOREIGN KEY (`vehicle_id_fk`) REFERENCES `vehicles` (`vehicle_id`) ON UPDATE CASCADE);')
